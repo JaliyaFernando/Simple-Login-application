@@ -133,7 +133,7 @@ userRoutes.route('/signin').post(function (req, res) {
         }
 
         const userSession = new UserSession();
-        userSession.userId = user._id;
+        userSession.userID = user._id;
         userSession.save((err, doc) =>{
             if(err) {
                 return res.send({
@@ -154,7 +154,7 @@ userRoutes.route('/verify').get(function (req, res) {
     const {query} = req;
     const {token} = query;
 
-    UserSession.findAndModify({
+    UserSession.findOneAndUpdate({
         _id:token,
         isDeleted:false
     },{
